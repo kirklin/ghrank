@@ -1,0 +1,68 @@
+name: 部署站点
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - ".github/workflows/update.yml"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ghrank-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 取回榜单数据
+        id: data
+        run: |
+          if git fetch origin dataset 2>/dev/null; then
+            git show FETCH_HEAD:data.tar.gz > data.tar.gz
+            tar xzf data.tar.gz
+            rm data.tar.gz
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            du -sh data
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::还没有 dataset 分支，先跑一次「每周更新榜单」再部署"
+          fi
+
+      - uses: pnpm/action-setup@v4
+        if: steps.data.outputs.ready == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.data.outputs.ready == 'true'
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - if: steps.data.outputs.ready == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: 生成站点用的紧凑数据
+        if: steps.data.outputs.ready == 'true'
+        run: pnpm compact
+
+      - name: 构建站点
+        if: steps.data.outputs.ready == 'true'
+        run: pnpm build:site
+
+      - uses: actions/configure-pages@v5
+        if: steps.data.outputs.ready == 'true'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.data.outputs.ready == 'true'
+        with:
+          path: web/out
+      - uses: actions/deploy-pages@v4
+        if: steps.data.outputs.ready == 'true'

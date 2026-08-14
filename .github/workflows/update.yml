@@ -7,15 +7,13 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: ghrank-update
   cancel-in-progress: false
 
 jobs:
-  update:
+  fetch:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
@@ -34,38 +32,38 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 取回上一轮快照
+      - name: 取回上一轮数据
         run: |
-          mkdir -p data/history
-          if git fetch origin snapshots:snapshots 2>/dev/null; then
-            git archive snapshots | tar -x -C data/history
-            echo "取回快照："
+          if git fetch origin dataset 2>/dev/null; then
+            git show FETCH_HEAD:data.tar.gz > data.tar.gz
+            tar xzf data.tar.gz
+            rm data.tar.gz
             ls -la data/history
           else
-            echo "没有 snapshots 分支，本次按首轮处理，涨跌留空"
+            echo "首轮运行，涨跌留空"
           fi
 
       - name: 抓取并生成榜单
-        run: pnpm build
+        run: pnpm fetch:users && pnpm fetch:repos && pnpm snapshot
 
-      - name: 存回本轮快照
+      - name: 存回本轮数据
         run: |
-          cd data/history
+          tar czf data.tar.gz data
+          ls -lh data.tar.gz
+          rm -rf .dataset && mkdir .dataset && mv data.tar.gz .dataset/
+          cd .dataset
           git init -q
-          git checkout -q -b snapshots
+          git checkout -q -b dataset
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -q -m "snapshot $(date -u +%F)"
-          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" snapshots
+          git commit -q -m "dataset $(date -u +%F)"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" dataset
 
-      - name: 构建站点
-        run: pnpm build:site
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: web/out
-
-      - id: deploy
-        uses: actions/deploy-pages@v4
+  publish:
+    needs: fetch
+    uses: ./.github/workflows/deploy.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
