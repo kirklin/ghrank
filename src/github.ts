@@ -6,19 +6,28 @@ const API = "https://api.github.com";
 let searchRemaining = 30;
 let searchResetAt = 0;
 
-function resolveToken(): string {
-  const fromEnv = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
-  if (fromEnv) {
-    return fromEnv;
-  }
-  try {
-    return execFileSync("gh", ["auth", "token"], { encoding: "utf8" }).trim();
-  } catch {
-    throw new Error("需要 GitHub token：设置 GITHUB_TOKEN 环境变量，或先跑 gh auth login");
-  }
+let cachedToken: string | null = null;
+
+export function setToken(value: string): void {
+  cachedToken = value;
 }
 
-const token = resolveToken();
+function token(): string {
+  if (cachedToken) {
+    return cachedToken;
+  }
+  const fromEnv = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
+  if (fromEnv) {
+    cachedToken = fromEnv;
+    return cachedToken;
+  }
+  try {
+    cachedToken = execFileSync("gh", ["auth", "token"], { encoding: "utf8" }).trim();
+    return cachedToken;
+  } catch {
+    throw new Error("A GitHub token is required: set GITHUB_TOKEN, or run gh auth login");
+  }
+}
 
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -72,7 +81,7 @@ export async function search<T>(
     const res = await fetch(url, {
       headers: {
         "accept": "application/vnd.github+json",
-        "authorization": `Bearer ${token}`,
+        "authorization": `Bearer ${token()}`,
         "user-agent": "ghrank",
         "x-github-api-version": "2022-11-28",
       },
@@ -114,7 +123,7 @@ export async function graphql<T>(query: string): Promise<T> {
     const res = await fetch(`${API}/graphql`, {
       method: "POST",
       headers: {
-        "authorization": `Bearer ${token}`,
+        "authorization": `Bearer ${token()}`,
         "content-type": "application/json",
         "user-agent": "ghrank",
       },

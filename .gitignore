@@ -18,3 +18,5 @@ web/.next/
 web/out/
 next-env.d.ts
 *.tsbuildinfo
+
+dist/
