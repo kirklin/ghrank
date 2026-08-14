@@ -1,4 +1,4 @@
-name: 每周更新榜单
+name: Update rankings
 
 on:
   schedule:
@@ -30,9 +30,10 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: 取回上一轮数据
+      - name: Restore previous dataset
         run: |
           if git fetch origin dataset 2>/dev/null; then
             git show FETCH_HEAD:data.tar.gz > data.tar.gz
@@ -40,13 +41,13 @@ jobs:
             rm data.tar.gz
             ls -la data/history
           else
-            echo "首轮运行，涨跌留空"
+            echo "First run, rank deltas will be empty"
           fi
 
-      - name: 抓取并生成榜单
+      - name: Crawl rankings
         run: pnpm fetch:users && pnpm fetch:repos && pnpm snapshot
 
-      - name: 存回本轮数据
+      - name: Publish dataset branch
         run: |
           tar czf data.tar.gz data
           ls -lh data.tar.gz
