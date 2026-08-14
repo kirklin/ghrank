@@ -9,6 +9,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const metadata: Metadata = {
   title: "Most Starred GitHub Repositories — ghrank",
   description: "Every GitHub repository with over 2,000 stars, ranked and refreshed weekly.",
+  alternates: { canonical: "/repos/" },
 };
 
 export default function Repos() {

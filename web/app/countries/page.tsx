@@ -9,6 +9,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const metadata: Metadata = {
   title: "GitHub Developers by Region — ghrank",
   description: "Top GitHub developers by country and territory, refreshed weekly.",
+  alternates: { canonical: "/countries/" },
 };
 
 export default function Countries() {

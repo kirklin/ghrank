@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ code: str
   return {
     title: `Top GitHub Developers in ${countryNameEn(upper)} — ghrank`,
     description: `Developers in ${countryNameEn(upper)} ranked by GitHub followers, refreshed weekly.`,
+    alternates: { canonical: `/c/${code.toLowerCase()}/` },
   };
 }
 

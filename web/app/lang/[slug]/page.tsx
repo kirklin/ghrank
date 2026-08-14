@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `Most Starred ${name} Repositories — ghrank`,
     description: `The most starred ${name} repositories on GitHub, refreshed weekly.`,
+    alternates: { canonical: `/lang/${slug}/` },
   };
 }
 

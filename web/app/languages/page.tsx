@@ -8,6 +8,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const metadata: Metadata = {
   title: "GitHub Repositories by Language — ghrank",
   description: "The most starred open source repositories in each programming language.",
+  alternates: { canonical: "/languages/" },
 };
 
 export default function Languages() {
