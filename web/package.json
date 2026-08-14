@@ -1,0 +1,23 @@
+{
+  "name": "ghrank-web",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3400",
+    "build": "next build",
+    "start": "next start",
+    "renorm": "tsx src/renorm.ts"
+  },
+  "dependencies": {
+    "lucide-react": "^1.31.0",
+    "next": "^16.3.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "simple-icons": "^16.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3"
+  }
+}
