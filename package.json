@@ -1,7 +1,7 @@
 {
   "name": "ghrank",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.15.0",
   "description": "GitHub user and repository rankings without the Search API 1000-result ceiling",
