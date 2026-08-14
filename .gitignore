@@ -1,0 +1,20 @@
+node_modules
+.DS_Store
+.idea/
+.vscode/
+*.log
+.claude
+
+# 抓取中间态，可断点续跑
+.cache/
+
+# 榜单是生成物，每轮跑出来的。repos.json 单个就 16MB，
+# 天天提交会把仓库撑爆。快照走 snapshots 孤儿分支持久化，见 workflow。
+data/
+web/public/data/
+
+# Next.js
+web/.next/
+web/out/
+next-env.d.ts
+*.tsbuildinfo
