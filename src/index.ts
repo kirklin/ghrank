@@ -37,4 +37,7 @@ export type { Profile } from "./profiles.js";
 export { fetchByShards, planShards } from "./shard.js";
 export type { RankField, Resource, ShardPlan } from "./shard.js";
 
+export { fetchStarHistory, isRepoName, StarHistoryError } from "./stars.js";
+export type { StarHistory, StarHistoryOptions, StarPoint } from "./stars.js";
+
 export type { RankedRepo, RankedUser, Shard } from "./types.js";
