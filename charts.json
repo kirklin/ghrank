@@ -1,0 +1,9 @@
+[
+  { "repos": ["kirklin/skyward"] },
+  { "repos": ["kirklin/celeris-web"] },
+  { "repos": ["kirklin/qzone-history"] },
+  { "repos": ["kirklin/boot-vue"] },
+  { "repos": ["kirklin/cpdaily"] },
+  { "repos": ["kirklin/magisk-brick-guardian"] },
+  { "repos": ["kirklin/go-swd"] }
+]

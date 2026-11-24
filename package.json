@@ -55,6 +55,7 @@
     "build": "tsdown",
     "build:site": "pnpm --filter ghrank-web build",
     "compact": "tsx src/compact.ts",
+    "charts": "tsx src/build-charts.ts",
     "renorm": "tsx src/renorm.ts",
     "prepublishOnly": "pnpm build",
     "build:data": "pnpm fetch:users && pnpm fetch:repos && pnpm snapshot && pnpm compact"

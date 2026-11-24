@@ -12,7 +12,7 @@ export function setToken(value: string): void {
   cachedToken = value;
 }
 
-function token(): string {
+export function token(): string {
   if (cachedToken) {
     return cachedToken;
   }
