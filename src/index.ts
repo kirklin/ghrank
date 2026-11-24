@@ -37,6 +37,15 @@ export type { Profile } from "./profiles.js";
 export { fetchByShards, planShards } from "./shard.js";
 export type { RankField, Resource, ShardPlan } from "./shard.js";
 
+export { MAX_STAR_CHART_SERIES, renderStarChart, STAR_CHART_PALETTES } from "./star-chart.js";
+export type {
+  StarChart,
+  StarChartColors,
+  StarChartMode,
+  StarChartOptions,
+  StarChartSeries,
+} from "./star-chart.js";
+
 export { fetchStarHistory, isRepoName, StarHistoryError } from "./stars.js";
 export type { StarHistory, StarHistoryOptions, StarPoint } from "./stars.js";
 
