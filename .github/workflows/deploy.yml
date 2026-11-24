@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths-ignore:
       - .github/workflows/update.yml
+  schedule:
+    - cron: "0 21 * * 1-6"
   workflow_dispatch:
   workflow_call:
 
@@ -54,6 +56,12 @@ jobs:
       - name: Build compact payloads
         if: steps.data.outputs.ready == 'true'
         run: pnpm compact
+
+      - name: Render star history charts
+        if: steps.data.outputs.ready == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: pnpm charts
 
       - name: Build static site
         if: steps.data.outputs.ready == 'true'
