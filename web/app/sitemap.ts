@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/repos/`, lastModified, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE}/countries/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/languages/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE}/stars/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
   ];
 
   const regions: MetadataRoute.Sitemap = countries().map(c => ({

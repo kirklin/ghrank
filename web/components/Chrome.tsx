@@ -15,6 +15,7 @@ export function Header({ base, date }: { base: string; date: string | null }) {
           <a href={`${base}/repos/`}>{tr("nav.repos")}</a>
           <a href={`${base}/countries/`}>{tr("nav.regions")}</a>
           <a href={`${base}/languages/`}>{tr("nav.languages")}</a>
+          <a href={`${base}/stars/`}>{tr("nav.stars")}</a>
         </nav>
         <span className="controls">
           {date ? <span className="stamp">{date}</span> : null}

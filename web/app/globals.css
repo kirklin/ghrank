@@ -8,6 +8,16 @@
   --chip: #f4f4f5;
   --chip-hover: #e9e9eb;
   --hover: #fafafa;
+  --chart-grid: #ececee;
+  --chart-axis: #d4d4d8;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +31,16 @@
     --chip: #18181b;
     --chip-hover: #26262a;
     --hover: #131316;
+    --chart-grid: #1c1c20;
+    --chart-axis: #34343a;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #0ca30c;
+    --series-7: #9085e9;
+    --series-8: #e66767;
   }
 }
 
@@ -34,6 +54,16 @@
   --chip: #18181b;
   --chip-hover: #26262a;
   --hover: #131316;
+  --chart-grid: #1c1c20;
+  --chart-axis: #34343a;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #0ca30c;
+  --series-7: #9085e9;
+  --series-8: #e66767;
 }
 
 * { box-sizing: border-box; }
@@ -149,6 +179,90 @@ h1 {
 .search::placeholder { color: var(--faint); }
 .search:focus { outline: none; }
 .search::-webkit-search-cancel-button { cursor: pointer; }
+
+.field-btn {
+  flex-shrink: 0;
+  padding: 6px 2px;
+  font: inherit;
+  font-size: 13.5px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.field-btn:hover { color: var(--fg); }
+
+.notice { color: var(--muted); font-size: 13.5px; margin: 14px 4px; }
+
+.star-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px 28px;
+  margin: 30px 4px 0;
+}
+.star-legend { display: flex; flex-wrap: wrap; gap: 8px 26px; min-height: 32px; align-items: center; }
+.star-key { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 580; }
+.star-key a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.star-key .n { color: var(--muted); font-weight: 400; font-variant-numeric: tabular-nums; }
+.star-key.idle { color: var(--muted); font-weight: 400; }
+.star-swatch { display: inline-block; width: 14px; height: 3px; border-radius: 999px; flex-shrink: 0; }
+.star-options { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+
+.segment { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--chip); }
+.segment button {
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 4px 13px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.segment button:hover { color: var(--fg); }
+.segment button.on { background: var(--bg); color: var(--fg); box-shadow: 0 1px 2px rgb(0 0 0 / 12%); }
+
+.chip-x {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--faint);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.chip-x:hover { background: var(--chip-hover); color: var(--fg); }
+
+.star-token { max-width: 520px; margin-top: 18px; }
+
+.star-frame { margin-top: 14px; }
+.star-chart { position: relative; touch-action: pan-y; }
+.star-chart > div > svg { display: block; }
+.star-chart text { font-variant-numeric: tabular-nums; }
+.star-hover { position: absolute; inset: 0; pointer-events: none; }
+.star-tip {
+  position: absolute;
+  z-index: 5;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--chip-hover), 0 12px 32px -8px rgb(0 0 0 / 22%), 0 4px 10px -4px rgb(0 0 0 / 14%);
+  font-size: 12.5px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.star-tip-head { color: var(--faint); font-variant-numeric: tabular-nums; margin-bottom: 5px; }
+.star-tip-row { display: flex; align-items: center; gap: 9px; line-height: 1.75; color: var(--muted); }
+.star-tip-row b { min-width: 52px; color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
 
 .count {
   color: var(--faint);

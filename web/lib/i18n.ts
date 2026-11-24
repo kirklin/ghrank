@@ -7,6 +7,7 @@ const dict = {
   "nav.repos": { en: "Repositories", zh: "仓库" },
   "nav.regions": { en: "Regions", zh: "地区" },
   "nav.languages": { en: "Languages", zh: "语言" },
+  "nav.stars": { en: "Star History", zh: "Star 历史" },
 
   "home.title": { en: "GitHub Developer Ranking", zh: "GitHub 用户榜" },
   "home.allRegions": { en: "All regions", zh: "全部地区" },
@@ -25,6 +26,31 @@ const dict = {
   "country.title": { en: "{name} Developers", zh: "{name} 开发者榜" },
 
   "lang.title": { en: "{name} Repositories", zh: "{name} 仓库榜" },
+
+  "stars.title": { en: "GitHub Star History", zh: "GitHub Star 历史" },
+  "stars.add": { en: "Add a repository, e.g. vuejs/core", zh: "添加仓库，例如 vuejs/core" },
+  "stars.empty": { en: "Add a repository to see how its stars grew.", zh: "添加仓库后，可以查看它的 Star 增长曲线。" },
+  "stars.invalid": { en: "Enter a repository as owner/name.", zh: "请输入 owner/name 格式的仓库名。" },
+  "stars.limit": { en: "You can add up to {n} repositories.", zh: "最多只能添加{n}个仓库" },
+  "stars.loading": { en: "Loading", zh: "正在获取" },
+  "stars.notFound": { en: "Couldn't find \"{repo}\". Check the repository name.", zh: "无法找到\"{repo}\"，请检查仓库名是否正确。" },
+  "stars.failed": { en: "Couldn't load \"{repo}\". Try again later.", zh: "未能获取\"{repo}\"的数据，请稍后再试。" },
+  "stars.rateLimited": {
+    en: "GitHub's request limit has been reached. Add an access token to continue.",
+    zh: "GitHub 的请求次数已达上限，暂无法获取数据，需填入访问令牌。",
+  },
+  "stars.unauthorized": { en: "The access token is invalid. Enter it again.", zh: "访问令牌无效，请重新填写。" },
+  "stars.token": { en: "Access token", zh: "访问令牌" },
+  "stars.tokenPlaceholder": { en: "Paste a GitHub access token", zh: "粘贴 GitHub 访问令牌" },
+  "stars.tokenHint": {
+    en: "The token needs no scopes and is stored only in this browser.",
+    zh: "令牌不需要勾选任何权限，只保存在这个浏览器里。",
+  },
+  "stars.modeDate": { en: "Date", zh: "日期" },
+  "stars.modeTimeline": { en: "Timeline", zh: "起点对齐" },
+  "stars.linear": { en: "Linear", zh: "线性" },
+  "stars.log": { en: "Log", zh: "对数" },
+  "stars.day": { en: "Day {n}", zh: "第{n}天" },
 
   "table.rank": { en: "#", zh: "#" },
   "table.user": { en: "Developer", zh: "用户" },
@@ -57,6 +83,9 @@ const dict = {
   "card.joined": { en: "Joined {year}", zh: "{year} 年加入" },
 
   "action.more": { en: "Show {n} more", zh: "再显示 {n} 条" },
+  "action.add": { en: "Add", zh: "添加" },
+  "action.save": { en: "Save", zh: "保存" },
+  "action.remove": { en: "Remove", zh: "移除" },
   "badge.new": { en: "new", zh: "新" },
   "filter.clear": { en: "All", zh: "全部" },
 

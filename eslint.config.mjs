@@ -14,7 +14,7 @@ export default kirklin(
     },
   },
   {
-    files: ["web/components/LangProvider.tsx", "web/components/ThemeSwitch.tsx"],
+    files: ["web/components/LangProvider.tsx", "web/components/ThemeSwitch.tsx", "web/app/stars/StarHistoryView.tsx"],
     rules: {
       "react/set-state-in-effect": "off",
     },
